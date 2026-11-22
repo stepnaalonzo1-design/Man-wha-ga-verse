@@ -1,0 +1,60 @@
+
+/* MangaVerse - Premium Dark Theme */
+
+* {
+  margin: 0;
+    padding: 0;
+      box-sizing: border-box;
+      }
+
+      body {
+        background: #0b0b10;
+          color: #ffffff;
+            font-family: Arial, sans-serif;
+            }
+
+            header {
+              background: #14141d;
+                padding: 20px;
+                  border-bottom: 1px solid #292936;
+                  }
+
+                  header h1 {
+                    color: #a855f7;
+                      font-size: 28px;
+                      }
+
+                      button {
+                        background: #9333ea;
+                          color: white;
+                            border: none;
+                              padding: 10px 16px;
+                                border-radius: 8px;
+                                  cursor: pointer;
+                                  }
+
+                                  button:hover {
+                                    background: #7e22ce;
+                                    }
+
+                                    input {
+                                      background: #191923;
+                                        color: white;
+                                          border: 1px solid #343443;
+                                            padding: 12px;
+                                              border-radius: 8px;
+                                                width: 100%;
+                                                }
+
+                                                .comic-card {
+                                                  background: #171720;
+                                                    border: 1px solid #292936;
+                                                      border-radius: 12px;
+                                                        padding: 15px;
+                                                          transition: transform 0.2s;
+                                                          }
+
+                                                          .comic-card:hover {
+                                                            transform: translateY(-5px);
+                                                            }
+                                                            
