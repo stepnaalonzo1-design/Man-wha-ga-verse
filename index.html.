@@ -3,248 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MangaVerse</title>
+<title>MangaVerse | Read Your Next Adventure</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #101014;
-  color: #f5f5f5;
-  font-family: Arial, sans-serif;
-}
-header {
-  padding: 22px;
-  background: #18181f;
-  border-bottom: 1px solid #30303a;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.logo { font-size: 25px; font-weight: bold; color: #b99aff; }
-nav button, .filter button {
-  background: #252530;
-  color: white;
-  border: 1px solid #393943;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 3px;
-}
-main { padding: 22px; max-width: 1100px; margin: auto; }
-.hero {
-  padding: 35px 24px;
-  background: linear-gradient(120deg,#29203d,#171720);
-  border-radius: 16px;
-  margin-bottom: 25px;
-}
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 9px;
-  border: 1px solid #393943;
-  background: #1b1b23;
-  color: white;
-  margin: 12px 0;
-}
-h2 { margin-top: 28px; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(145px,1fr));
-  gap: 16px;
-}
-.card {
-  background: #1b1b23;
-  border: 1px solid #30303a;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.cover {
-  height: 180px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 12px;
-  background: linear-gradient(145deg,#46335e,#20202c);
-  font-size: 20px;
-  font-weight: bold;
-}
-.card-info { padding: 12px; }
-.card-info p { color: #aaa; font-size: 13px; }
-.card button, .action {
-  background: #7654b8;
-  color: white;
-  border: 0;
-  padding: 9px 12px;
-  border-radius: 7px;
-  cursor: pointer;
-  margin: 3px 2px 0 0;
-}
-.reader {
-  display: none;
-  max-width: 700px;
-  margin: auto;
-}
-.reader img {
-  display: block;
-  width: 100%;
-  min-height: 300px;
-  object-fit: cover;
-  margin-bottom: 5px;
-  background: #252530;
-}
-.page-placeholder {
-  height: 360px;
-  display: grid;
-  place-items: center;
-  background: #24212d;
-  color: #aaa;
-  margin-bottom: 5px;
-  text-align: center;
-  padding: 20px;
-}
-footer { text-align: center; padding: 30px; color: #777; }
+*{box-sizing:border-box}
+body{margin:0;background:#101014;color:#f5f5f5;font-family:Arial,sans-serif}
+header{background:#191820;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid #302b3b}
+.logo{font-size:25px;font-weight:bold;color:#c4a4ff}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+button{cursor:pointer;border:0;border-radius:8px;padding:10px 15px;background:#30283e;color:white}
+button:hover{background:#7654b8}
+main{max-width:1150px;margin:auto;padding:25px 20px}
+.hero{padding:45px 25px;border-radius:16px;background:linear-gradient(120deg,#38264f,#171720);margin-bottom:25px}
+.hero h1{font-size:clamp(27px,5vw,42px);margin:0 0 12px}
+.hero p{color:#c8bed6}
+input{width:100%;padding:15px;border-radius:9px;background:#1c1b24;color:white;border:1px solid #393443;margin:10px 0 18px;font-size:16px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button.active{background:#7654b8}
+h2{margin-top:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:17px}
+.card{background:#1c1b24;border:1px solid #302d39;border-radius:12px;overflow:hidden}
+.cover{height:190px;background:linear-gradient(145deg,#62447e,#24202e);display:grid;place-items:center;text-align:center;padding:15px;font-size:21px;font-weight:bold;color:#fff}
+.info{padding:13px}
+.info p{color:#aaa;font-size:13px}
+.info button{margin:3px 2px 0 0}
+.reader{display:none;max-width:750px;margin:auto;padding:20px}
+.reader h2{margin-top:20px}
+.page{height:420px;background:#24212d;border:1px solid #393443;display:grid;place-items:center;text-align:center;padding:20px;color:#aaa;margin-bottom:5px}
+footer{text-align:center;padding:35px;color:#777}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">✦ MangaVerse</div>
-  <nav>
-    <button onclick="showHome()">Home</button>
-    <button onclick="showSaved()">Bookmarks</button>
-    <button onclick="showHistory()">History</button>
-  </nav>
+<div class="logo">✦ MangaVerse</div>
+<nav>
+<button onclick="showHome()">Home</button>
+<button onclick="showSaved()">Bookmarks</button>
+<button onclick="showHistory()">History</button>
+</nav>
 </header>
 
 <main id="home">
-  <section class="hero">
-    <h1>Your next adventure awaits.</h1>
-    <p>Discover stories. Explore worlds. Read your way.</p>
-  </section>
+<section class="hero">
+<h1>Your next adventure awaits.</h1>
+<p>Discover stories. Explore worlds. Read your way.</p>
+</section>
 
-  <input id="search" placeholder="Search titles..." oninput="render()">
+<input id="search" placeholder="Search your manga..." oninput="render()">
 
-  <div class="filter">
-    <button onclick="setGenre('All')">All</button>
-    <button onclick="setGenre('Fantasy')">Fantasy</button>
-    <button onclick="setGenre('Action')">Action</button>
-    <button onclick="setGenre('Romance')">Romance</button>
-  </div>
+<div class="filters">
+<button class="active" onclick="setGenre('All',this)">All</button>
+<button onclick="setGenre('Fantasy',this)">Fantasy</button>
+<button onclick="setGenre('Action',this)">Action</button>
+<button onclick="setGenre('Romance',this)">Romance</button>
+</div>
 
-  <h2 id="sectionTitle">Explore Library</h2>
-  <div class="grid" id="library"></div>
+<h2 id="heading">Explore Library</h2>
+<div class="grid" id="library"></div>
 </main>
 
 <section class="reader" id="reader">
-  <button class="action" onclick="showHome()">← Back to library</button>
-  <h2 id="readerTitle">Chapter Reader</h2>
-  <p>Sample chapter — replace these placeholders with chapters you are authorized to upload.</p>
-  <div class="page-placeholder">Chapter page 1<br>Your uploaded page goes here</div>
-  <div class="page-placeholder">Chapter page 2<br>Your uploaded page goes here</div>
-  <div class="page-placeholder">Chapter page 3<br>Your uploaded page goes here</div>
-  <button class="action" onclick="showHome()">Finish reading</button>
+<button onclick="showHome()">← Back to Library</button>
+<h2 id="readerTitle">Chapter Reader</h2>
+<p>Upload your authorized chapter pages here.</p>
+<div class="page">Chapter page 1<br>Your chapter image goes here</div>
+<div class="page">Chapter page 2<br>Your chapter image goes here</div>
+<div class="page">Chapter page 3<br>Your chapter image goes here</div>
 </section>
 
 <footer>© 2026 MangaVerse · Your personal reading library</footer>
 
 <script>
-const comics = [
-  {id:1,title:"The Last Kingdom",genre:"Fantasy"},
-  {id:2,title:"Shadow Hunter",genre:"Action"},
-  {id:3,title:"A New Beginning",genre:"Romance"},
-  {id:4,title:"Dragon's Legacy",genre:"Fantasy"},
-  {id:5,title:"Crimson Blade",genre:"Action"},
-  {id:6,title:"Moonlight Promise",genre:"Romance"}
+const comics=[
+{id:1,title:"The Last Kingdom",genre:"Fantasy"},
+{id:2,title:"Shadow Hunter",genre:"Action"},
+{id:3,title:"A New Beginning",genre:"Romance"},
+{id:4,title:"Dragon's Legacy",genre:"Fantasy"},
+{id:5,title:"Crimson Blade",genre:"Action"},
+{id:6,title:"Moonlight Promise",genre:"Romance"}
 ];
 
-let genre = "All";
-let mode = "all";
-let bookmarks = JSON.parse(localStorage.getItem("mvBookmarks") || "[]");
-let history = JSON.parse(localStorage.getItem("mvHistory") || "[]");
+let genre="All";
+let mode="all";
+let bookmarks=JSON.parse(localStorage.getItem("mvBookmarks")||"[]");
+let history=JSON.parse(localStorage.getItem("mvHistory")||"[]");
 
-function save() {
-  localStorage.setItem("mvBookmarks",JSON.stringify(bookmarks));
-  localStorage.setItem("mvHistory",JSON.stringify(history));
+function save(){
+localStorage.setItem("mvBookmarks",JSON.stringify(bookmarks));
+localStorage.setItem("mvHistory",JSON.stringify(history));
 }
 
-function setGenre(value) {
-  genre = value;
-  mode = "all";
-  render();
+function setGenre(value,button){
+genre=value;
+mode="all";
+document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+render();
 }
 
-function render() {
-  document.getElementById("home").style.display = "block";
-  document.getElementById("reader").style.display = "none";
-  const query = document.getElementById("search").value.toLowerCase();
+function render(){
+document.getElementById("home").style.display="block";
+document.getElementById("reader").style.display="none";
 
-  let list = comics.filter(c =>
-    c.title.toLowerCase().includes(query) &&
-    (genre === "All" || c.genre === genre)
-  );
+const query=document.getElementById("search").value.toLowerCase();
 
-  if(mode === "saved") list = list.filter(c => bookmarks.includes(c.id));
-  if(mode === "history") list = list.filter(c => history.includes(c.id));
+let list=comics.filter(c=>
+c.title.toLowerCase().includes(query)&&
+(genre==="All"||c.genre===genre)
+);
 
-  document.getElementById("sectionTitle").textContent =
-    mode === "saved" ? "Your Bookmarks" :
-    mode === "history" ? "Reading History" : "Explore Library";
+if(mode==="saved")list=list.filter(c=>bookmarks.includes(c.id));
+if(mode==="history")list=list.filter(c=>history.includes(c.id));
 
-  document.getElementById("library").innerHTML = list.map(c => `
-    <article class="card">
-      <div class="cover">${c.title}</div>
-      <div class="card-info">
-        <strong>${c.title}</strong>
-        <p>${c.genre}</p>
-        <button onclick="readComic(${c.id})">Read</button>
-        <button onclick="toggleBookmark(${c.id})">
-          ${bookmarks.includes(c.id) ? "★ Saved" : "☆ Save"}
-        </button>
-      </div>
-    </article>
-  `).join("") || "<p>No titles found.</p>";
+document.getElementById("heading").textContent=
+mode==="saved"?"Your Bookmarks":
+mode==="history"?"Reading History":"Explore Library";
+
+document.getElementById("library").innerHTML=list.map(c=>`
+<div class="card">
+<div class="cover">${c.title}</div>
+<div class="info">
+<strong>${c.title}</strong>
+<p>${c.genre}</p>
+<button onclick="readComic(${c.id})">Read</button>
+<button onclick="toggleBookmark(${c.id})">
+${bookmarks.includes(c.id)?"★ Saved":"☆ Save"}
+</button>
+</div>
+</div>
+`).join("")||"<p>No manga found.</p>";
 }
 
-function toggleBookmark(id) {
-  bookmarks = bookmarks.includes(id)
-    ? bookmarks.filter(x => x !== id)
-    : [...bookmarks,id];
-  save();
-  render();
+function toggleBookmark(id){
+bookmarks=bookmarks.includes(id)?
+bookmarks.filter(x=>x!==id):[...bookmarks,id];
+save();
+render();
 }
 
-function readComic(id) {
-  const comic = comics.find(c => c.id === id);
-  history = [id,...history.filter(x => x !== id)];
-  save();
-  document.getElementById("home").style.display = "none";
-  document.getElementById("reader").style.display = "block";
-  document.getElementById("readerTitle").textContent = comic.title + " — Chapter 1";
-  window.scrollTo(0,0);
+function readComic(id){
+const comic=comics.find(c=>c.id===id);
+history=[id,...history.filter(x=>x!==id)];
+save();
+document.getElementById("home").style.display="none";
+document.getElementById("reader").style.display="block";
+document.getElementById("readerTitle").textContent=comic.title+" — Chapter 1";
+window.scrollTo(0,0);
 }
 
-function showHome() {
-  mode = "all";
-  genre = "All";
-  document.getElementById("search").value = "";
-  render();
+function showHome(){
+mode="all";
+genre="All";
+document.getElementById("search").value="";
+document.querySelectorAll(".filters button").forEach((b,i)=>b.classList.toggle("active",i===0));
+render();
 }
 
-function showSaved() {
-  mode = "saved";
-  genre = "All";
-  document.getElementById("search").value = "";
-  render();
+function showSaved(){
+mode="saved";
+genre="All";
+document.getElementById("search").value="";
+render();
 }
 
-function showHistory() {
-  mode = "history";
-  genre = "All";
-  document.getElementById("search").value = "";
-  render();
+function showHistory(){
+mode="history";
+genre="All";
+document.getElementById("search").value="";
+render();
 }
 
 render();
