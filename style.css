@@ -4,14 +4,14 @@
 }
 
 :root {
-  --background: #101014;
-  --surface: #191820;
-  --card: #1c1b24;
-  --border: #302b3b;
+  --background: #0c0b10;
+  --surface: #15131b;
+  --card: #1b1823;
+  --border: #302a3a;
   --accent: #c4a4ff;
-  --accent-hover: #7654b8;
-  --text: #f5f5f5;
-  --muted: #aaa;
+  --accent-hover: #9b73e8;
+  --text: #f5f3fa;
+  --muted: #a49caf;
 }
 
 html {
@@ -23,11 +23,11 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 header {
-  background: var(--surface);
+  background: rgba(21, 19, 27, 0.95);
   padding: 20px 5%;
   display: flex;
   justify-content: space-between;
@@ -35,107 +35,142 @@ header {
   flex-wrap: wrap;
   gap: 15px;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
 }
 
 .logo {
-  font-size: 25px;
+  font-size: 26px;
   font-weight: bold;
   color: var(--accent);
+  letter-spacing: 1px;
 }
 
 nav {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 button {
   cursor: pointer;
-  border: 0;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 15px;
-  background: #30283e;
+  padding: 10px 16px;
+  background: #241f2e;
   color: white;
   font-size: 14px;
-  transition: background 0.2s;
+  transition: 0.2s ease;
 }
 
 button:hover {
   background: var(--accent-hover);
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 main {
-  max-width: 1150px;
+  max-width: 1250px;
   margin: auto;
-  padding: 25px 20px;
+  padding: 30px 24px;
 }
 
 .hero {
-  padding: 45px 25px;
-  border-radius: 16px;
-  background: linear-gradient(120deg, #38264f, #171720);
-  margin-bottom: 25px;
+  padding: 55px 35px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      circle at top right,
+      #493365 0%,
+      transparent 45%
+    ),
+    linear-gradient(120deg, #21192e, #111015);
+  margin-bottom: 35px;
+  overflow: hidden;
 }
 
 .hero h1 {
-  font-size: clamp(27px, 5vw, 42px);
+  font-size: clamp(30px, 5vw, 48px);
   line-height: 1.2;
-  margin: 0 0 12px;
+  margin: 0 0 15px;
+  letter-spacing: -1px;
 }
 
 .hero p {
   color: #c8bed6;
+  max-width: 600px;
 }
 
 input {
   width: 100%;
-  padding: 15px;
-  border-radius: 9px;
+  padding: 15px 18px;
+  border-radius: 10px;
   background: var(--card);
   color: white;
-  border: 1px solid #393443;
+  border: 1px solid var(--border);
   margin: 10px 0 18px;
   font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--accent);
 }
 
 input::placeholder {
-  color: #999;
+  color: #8e8599;
 }
 
 .filters {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 .filters button.active {
   background: var(--accent-hover);
+  border-color: var(--accent);
 }
 
 h2 {
-  margin-top: 30px;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-  gap: 17px;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(170px, 1fr)
+  );
+  gap: 22px;
 }
 
 .card {
   background: var(--card);
-  border: 1px solid #302d39;
+  border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition: transform 0.25s, border-color 0.25s;
 }
 
 .card:hover {
+  transform: translateY(-5px);
   border-color: var(--accent-hover);
 }
 
+/* Manhwa cover image */
+
 .cover {
-  min-height: 190px;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  min-height: 0;
   background: linear-gradient(145deg, #62447e, #24202e);
   display: grid;
   place-items: center;
@@ -144,31 +179,50 @@ h2 {
   font-size: 21px;
   font-weight: bold;
   color: #fff;
-  overflow-wrap: anywhere;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Actual cover image inside the card */
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .cover img {
+  transform: scale(1.05);
 }
 
 .info {
-  padding: 13px;
+  padding: 15px;
 }
 
 .info strong {
   display: block;
   overflow-wrap: anywhere;
+  font-size: 15px;
 }
 
 .info p {
   color: var(--muted);
   font-size: 13px;
+  margin: 8px 0;
 }
 
 .info button {
-  margin: 3px 2px 0 0;
+  margin: 5px 2px 0 0;
 }
 
 .reader {
   display: none;
   width: 100%;
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
 }
@@ -186,17 +240,19 @@ h2 {
 .reader-page {
   display: block;
   width: 100%;
-  max-width: 800px;
+  max-width: 850px;
   height: auto;
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
   object-fit: contain;
   background: #191820;
 }
 
 footer {
   text-align: center;
-  padding: 35px;
+  padding: 40px 20px;
   color: #777;
+  border-top: 1px solid var(--border);
+  margin-top: 50px;
 }
 
 @media (max-width: 600px) {
@@ -221,7 +277,7 @@ footer {
   }
 
   .hero {
-    padding: 30px 20px;
+    padding: 35px 20px;
   }
 
   .grid {
@@ -230,8 +286,11 @@ footer {
   }
 
   .cover {
-    min-height: 160px;
     font-size: 18px;
+  }
+
+  .info {
+    padding: 11px;
   }
 
   .reader {
