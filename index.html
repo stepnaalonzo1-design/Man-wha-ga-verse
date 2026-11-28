@@ -1,164 +1,232 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MangaVerse | Read Your Next Adventure</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arena | Read Your Next Adventure</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
-<div class="logo">✦ MangaVerse</div>
-<nav>
-<button onclick="showHome()">Home</button>
-<button onclick="showSaved()">Bookmarks</button>
-<button onclick="showHistory()">History</button>
-</nav>
+  <div class="logo">✦ Arena</div>
+  <nav>
+    <button onclick="showHome()">Home</button>
+    <button onclick="showSaved()">Bookmarks</button>
+    <button onclick="showHistory()">History</button>
+  </nav>
 </header>
 
 <main id="home">
-<section class="hero">
-<h1>Your next adventure awaits.</h1>
-<p>Discover stories. Explore worlds. Read your way.</p>
-</section>
+  <section class="hero">
+    <h1>Your next adventure awaits.</h1>
+    <p>Discover stories. Explore worlds. Read your way.</p>
+  </section>
 
-<input id="search" placeholder="Search your manga..." oninput="render()">
+  <input
+    id="search"
+    type="search"
+    placeholder="Search your manga..."
+    oninput="render()"
+  >
 
-<div class="filters">
-<button class="active" onclick="setGenre('All',this)">All</button>
-<button onclick="setGenre('Fantasy',this)">Fantasy</button>
-<button onclick="setGenre('Action',this)">Action</button>
-<button onclick="setGenre('Romance',this)">Romance</button>
-</div>
+  <div class="filters">
+    <button class="active" onclick="setGenre('All',this)">All</button>
+    <button onclick="setGenre('Fantasy',this)">Fantasy</button>
+    <button onclick="setGenre('Action',this)">Action</button>
+    <button onclick="setGenre('Romance',this)">Romance</button>
+  </div>
 
-<h2 id="heading">Explore Library</h2>
-<div class="grid" id="library"></div>
+  <h2 id="heading">Explore Library</h2>
+  <div class="grid" id="library"></div>
 </main>
 
 <section class="reader" id="reader">
-<button onclick="showHome()">← Back to Library</button>
-<h2 id="readerTitle">Chapter Reader</h2>
-<p>Upload your authorized chapter pages here.</p>
-<div class="page">Chapter page 1<br>Your chapter image goes here</div>
-<div class="page">Chapter page 2<br>Your chapter image goes here</div>
-<div class="page">Chapter page 3<br>Your chapter image goes here</div>
+  <button onclick="showHome()">← Back to Library</button>
+  <h2 id="readerTitle">Chapter Reader</h2>
+  <div id="readerPages"></div>
 </section>
 
-<footer>© 2026 MangaVerse · Your personal reading library</footer>
+<footer>
+  © 2026 Arena · Your personal reading library
+</footer>
 
 <script>
-const comics=[
-{
-  id:1,
-  title:"Character Na Kang Lim",
-  genre:"Fantasy",
-  pages:[
-    "image/chapter-1/Screenshot_2026-11-28-09-57-06-278_app.mihon.jpg",
-    "image/chapter-1/Screenshot_2026-11-28-09-57-10-252_app.mihon.jpg",
-    "image/chapter-1/Screenshot_2026-11-28-09-57-12-310_app.mihon.jpg",
-    "image/chapter-1/Screenshot_2026-11-28-09-57-25-241_app.mihon.jpg",
-    "image/chapter-1/Screenshot_2026-11-28-09-57-27-921_app.mihon.jpg"
-  ]
-},
-{id:2,title:"Shadow Hunter",genre:"Action"},
-{id:3,title:"A New Beginning",genre:"Romance"},
-{id:4,title:"Dragon's Legacy",genre:"Fantasy"},
-{id:5,title:"Crimson Blade",genre:"Action"},
-{id:6,title:"Moonlight Promise",genre:"Romance"}
+const comics = [
+  {
+    id: 1,
+    title: "Character Na Kang Lim",
+    genre: "Fantasy",
+    pages: [
+      "image/chapter-1/Screenshot_2026-11-28-09-57-06-278_app.mihon.jpg",
+      "image/chapter-1/Screenshot_2026-11-28-09-57-10-252_app.mihon.jpg",
+      "image/chapter-1/Screenshot_2026-11-28-09-57-12-310_app.mihon.jpg",
+      "image/chapter-1/Screenshot_2026-11-28-09-57-25-241_app.mihon.jpg",
+      "image/chapter-1/Screenshot_2026-11-28-09-57-27-921_app.mihon.jpg"
+    ]
+  },
+  {
+    id: 2,
+    title: "Shadow Hunter",
+    genre: "Action"
+  },
+  {
+    id: 3,
+    title: "A New Beginning",
+    genre: "Romance"
+  },
+  {
+    id: 4,
+    title: "Dragon's Legacy",
+    genre: "Fantasy"
+  },
+  {
+    id: 5,
+    title: "Crimson Blade",
+    genre: "Action"
+  },
+  {
+    id: 6,
+    title: "Moonlight Promise",
+    genre: "Romance"
+  }
 ];
 
-let genre="All";
-let mode="all";
-let bookmarks=JSON.parse(localStorage.getItem("mvBookmarks")||"[]");
-let history=JSON.parse(localStorage.getItem("mvHistory")||"[]");
+let genre = "All";
+let mode = "all";
 
-function save(){
-localStorage.setItem("mvBookmarks",JSON.stringify(bookmarks));
-localStorage.setItem("mvHistory",JSON.stringify(history));
-}
-
-function setGenre(value,button){
-genre=value;
-mode="all";
-document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
-button.classList.add("active");
-render();
-}
-
-function render(){
-document.getElementById("home").style.display="block";
-document.getElementById("reader").style.display="none";
-
-const query=document.getElementById("search").value.toLowerCase();
-
-let list=comics.filter(c=>
-c.title.toLowerCase().includes(query)&&
-(genre==="All"||c.genre===genre)
+let bookmarks = JSON.parse(
+  localStorage.getItem("mvBookmarks") || "[]"
 );
 
-if(mode==="saved")list=list.filter(c=>bookmarks.includes(c.id));
-if(mode==="history")list=list.filter(c=>history.includes(c.id));
+let history = JSON.parse(
+  localStorage.getItem("mvHistory") || "[]"
+);
 
-document.getElementById("heading").textContent=
-mode==="saved"?"Your Bookmarks":
-mode==="history"?"Reading History":"Explore Library";
-
-document.getElementById("library").innerHTML=list.map(c=>`
-<div class="card">
-<div class="cover">${c.title}</div>
-<div class="info">
-<strong>${c.title}</strong>
-<p>${c.genre}</p>
-<button onclick="readComic(${c.id})">Read</button>
-<button onclick="toggleBookmark(${c.id})">
-${bookmarks.includes(c.id)?"★ Saved":"☆ Save"}
-</button>
-</div>
-</div>
-`).join("")||"<p>No manga found.</p>";
+function save() {
+  localStorage.setItem("mvBookmarks", JSON.stringify(bookmarks));
+  localStorage.setItem("mvHistory", JSON.stringify(history));
 }
 
-function toggleBookmark(id){
-bookmarks=bookmarks.includes(id)?
-bookmarks.filter(x=>x!==id):[...bookmarks,id];
-save();
-render();
+function setGenre(value, button) {
+  genre = value;
+  mode = "all";
+
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+  render();
 }
 
-function readComic(id){
-const comic=comics.find(c=>c.id===id);
-history=[id,...history.filter(x=>x!==id)];
-save();
-document.getElementById("home").style.display="none";
-document.getElementById("reader").style.display="block";
-document.getElementById("readerTitle").textContent=comic.title+" — Chapter 1";
-window.scrollTo(0,0);
+function render() {
+  document.getElementById("home").style.display = "block";
+  document.getElementById("reader").style.display = "none";
+
+  const query = document.getElementById("search").value.toLowerCase();
+
+  let list = comics.filter(c =>
+    c.title.toLowerCase().includes(query) &&
+    (genre === "All" || c.genre === genre)
+  );
+
+  if (mode === "saved") {
+    list = list.filter(c => bookmarks.includes(c.id));
+  }
+
+  if (mode === "history") {
+    list = list.filter(c => history.includes(c.id));
+  }
+
+  document.getElementById("heading").textContent =
+    mode === "saved" ? "Your Bookmarks" :
+    mode === "history" ? "Reading History" :
+    "Explore Library";
+
+  document.getElementById("library").innerHTML =
+    list.map(c => `
+      <div class="card">
+        <div class="cover">${c.title}</div>
+        <div class="info">
+          <strong>${c.title}</strong>
+          <p>${c.genre}</p>
+          <button onclick="readComic(${c.id})">Read</button>
+          <button onclick="toggleBookmark(${c.id})">
+            ${bookmarks.includes(c.id) ? "★ Saved" : "☆ Save"}
+          </button>
+        </div>
+      </div>
+    `).join("") || "<p>No manga found.</p>";
 }
 
-function showHome(){
-mode="all";
-genre="All";
-document.getElementById("search").value="";
-document.querySelectorAll(".filters button").forEach((b,i)=>b.classList.toggle("active",i===0));
-render();
+function toggleBookmark(id) {
+  bookmarks = bookmarks.includes(id)
+    ? bookmarks.filter(x => x !== id)
+    : [...bookmarks, id];
+
+  save();
+  render();
 }
 
-function showSaved(){
-mode="saved";
-genre="All";
-document.getElementById("search").value="";
-render();
+function readComic(id) {
+  const comic = comics.find(c => c.id === id);
+
+  history = [id, ...history.filter(x => x !== id)];
+  save();
+
+  document.getElementById("home").style.display = "none";
+  document.getElementById("reader").style.display = "block";
+
+  document.getElementById("readerTitle").textContent =
+    comic.title + " — Chapter 1";
+
+  const readerPages = document.getElementById("readerPages");
+
+  if (comic.pages && comic.pages.length > 0) {
+    readerPages.innerHTML = comic.pages.map((page, index) => `
+      <img
+        class="reader-page"
+        src="${page}"
+        alt="${comic.title} Chapter 1 Page ${index + 1}"
+      >
+    `).join("");
+  } else {
+    readerPages.innerHTML = "<p>Chapter images coming soon.</p>";
+  }
+
+  window.scrollTo(0, 0);
 }
 
-function showHistory(){
-mode="history";
-genre="All";
-document.getElementById("search").value="";
-render();
+function showHome() {
+  mode = "all";
+  genre = "All";
+
+  document.getElementById("search").value = "";
+
+  document.querySelectorAll(".filters button")
+    .forEach((b, i) => b.classList.toggle("active", i === 0));
+
+  render();
+}
+
+function showSaved() {
+  mode = "saved";
+  genre = "All";
+  document.getElementById("search").value = "";
+  render();
+}
+
+function showHistory() {
+  mode = "history";
+  genre = "All";
+  document.getElementById("search").value = "";
+  render();
 }
 
 render();
 </script>
+
 </body>
 </html>
