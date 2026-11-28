@@ -1,94 +1,316 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b10">
   <title>Arena | Read Your Next Adventure</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
   <header class="navbar">
     <a class="logo" href="index.html">ARENA<span>.</span></a>
 
     <nav>
-      <a class="nav-link active" href="index.html">Home</a>
-      <a class="nav-link" href="chapters.html">Library</a>
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#featured">Library</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
 
-        <h1>Enter the world<br>of <span>manhwa.</span></h1>
+    <!-- HOMEPAGE -->
+    <div id="homeView">
 
-        <p class="hero-description">
-          Discover stories, meet unforgettable characters, and find your next
-          favorite read.
-        </p>
+      <section class="hero" id="home">
 
-        <a class="primary-button" href="chapters.html">
-          Explore the library <span aria-hidden="true">→</span>
-        </a>
-      </div>
+        <div class="hero-content">
+          <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
 
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-glow"></div>
-        <div class="art-label">YOUR NEXT READ</div>
-        <img
-          src="public/images/covers/1795839638952.jpg"
-          alt=""
-          class="hero-cover"
-        >
-      </div>
-    </section>
+          <h1>Enter the world<br>of <span>manhwa.</span></h1>
 
-    <section class="featured-section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">PICK UP WHERE THE STORY BEGINS</p>
-          <h2>Featured <span>manhwa</span></h2>
+          <p class="hero-description">
+            Discover stories, meet unforgettable characters, and find your next
+            favorite read.
+          </p>
+
+          <button class="primary-button" onclick="openReader()">
+            Explore the library <span aria-hidden="true">→</span>
+          </button>
         </div>
-        <span class="section-count">01 TITLE</span>
-      </div>
 
-      <a class="manhwa-card" href="chapters.html">
-        <div class="card-cover-wrap">
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-glow"></div>
+          <div class="art-label">YOUR NEXT READ</div>
+
           <img
             src="public/images/covers/1795839638952.jpg"
-            alt="Featured manhwa cover"
-            class="card-cover"
+            alt=""
+            class="hero-cover"
           >
-          <span class="card-badge">FEATURED</span>
         </div>
 
-        <div class="card-info">
-          <p class="card-category">MANHWA · ROMANCE</p>
-          <h3>Na Kang Lim</h3>
-          <p class="card-description">
-            Start reading and follow the story one chapter at a time.
-          </p>
-          <span class="read-link">Read Chapter 1 <span aria-hidden="true">↗</span></span>
+      </section>
+
+      <section class="featured-section" id="featured">
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PICK UP WHERE THE STORY BEGINS</p>
+            <h2>Featured <span>manhwa</span></h2>
+          </div>
+
+          <span class="section-count">01 TITLE</span>
         </div>
 
-        <span class="card-arrow" aria-hidden="true">→</span>
-      </a>
-    </section>
+        <button class="manhwa-card" onclick="openReader()">
 
-    <section class="bottom-banner">
-      <div>
-        <p class="eyebrow">READY TO READ?</p>
-        <h2>Your next chapter is waiting.</h2>
+          <div class="card-cover-wrap">
+            <img
+              src="public/images/covers/1795839638952.jpg"
+              alt="Na Kang Lim cover"
+              class="card-cover"
+            >
+
+            <span class="card-badge">FEATURED</span>
+          </div>
+
+          <div class="card-info">
+            <p class="card-category">MANHWA · ROMANCE</p>
+
+            <h3>Na Kang Lim</h3>
+
+            <p class="card-description">
+              Start reading and follow the story one chapter at a time.
+            </p>
+
+            <span class="read-link">
+              Read Chapter 1 <span aria-hidden="true">↗</span>
+            </span>
+          </div>
+
+          <span class="card-arrow" aria-hidden="true">→</span>
+
+        </button>
+
+      </section>
+
+      <section class="bottom-banner">
+
+        <div>
+          <p class="eyebrow">READY TO READ?</p>
+          <h2>Your next chapter is waiting.</h2>
+        </div>
+
+        <button class="secondary-button" onclick="openReader()">
+          Open library <span aria-hidden="true">→</span>
+        </button>
+
+      </section>
+
+    </div>
+
+    <!-- READER -->
+    <section id="readerView" hidden>
+
+      <div class="reader-toolbar">
+
+        <button class="back-button" onclick="closeReader()">
+          ← Back to Arena
+        </button>
+
+        <div class="reader-title">
+          <p class="eyebrow">NOW READING</p>
+          <h2>Na Kang Lim</h2>
+          <span>Chapter 1</span>
+        </div>
+
       </div>
-      <a class="secondary-button" href="chapters.html">Open library <span aria-hidden="true">→</span></a>
+
+      <div class="reader-notice">
+        <p id="readerStatus">Loading Chapter 1...</p>
+      </div>
+
+      <div id="chapterPages" class="chapter-pages"></div>
+
+      <div class="reader-bottom">
+        <p>You've reached the end of Chapter 1.</p>
+
+        <button class="primary-button" onclick="closeReader()">
+          Back to Arena →
+        </button>
+      </div>
+
     </section>
+
   </main>
 
   <footer class="footer">
     <a class="logo footer-logo" href="index.html">ARENA<span>.</span></a>
     <p>A place for your next adventure.</p>
   </footer>
+
+
+  <script>
+
+    // YOUR GITHUB REPOSITORY
+    const GITHUB_OWNER = "stepnaalonzo1-design";
+    const GITHUB_REPO = "Man-wha-ga-verse";
+    const GITHUB_BRANCH = "main";
+
+    const CHAPTER_FOLDER =
+      "public/images/chapter-1";
+
+    const API_URL =
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CHAPTER_FOLDER}?ref=${GITHUB_BRANCH}`;
+
+    const homeView = document.getElementById("homeView");
+    const readerView = document.getElementById("readerView");
+    const chapterPages = document.getElementById("chapterPages");
+    const readerStatus = document.getElementById("readerStatus");
+
+    let chapterLoaded = false;
+
+    // OPEN READER
+    async function openReader() {
+
+      homeView.hidden = true;
+      readerView.hidden = false;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+
+      if (!chapterLoaded) {
+        await loadChapter();
+      }
+    }
+
+    // CLOSE READER
+    function closeReader() {
+
+      readerView.hidden = true;
+      homeView.hidden = false;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+    }
+
+    // LOAD CHAPTER IMAGES FROM GITHUB
+    async function loadChapter() {
+
+      readerStatus.textContent = "Loading your chapter...";
+      chapterPages.innerHTML = "";
+
+      try {
+
+        const response = await fetch(API_URL, {
+          headers: {
+            "Accept": "application/vnd.github+json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            `GitHub returned error ${response.status}`
+          );
+        }
+
+        const files = await response.json();
+
+        if (!Array.isArray(files)) {
+          throw new Error("Invalid GitHub folder response.");
+        }
+
+        // Keep only image files
+        const images = files
+          .filter(file =>
+            file.type === "file" &&
+            /\.(jpg|jpeg|png|webp)$/i.test(file.name)
+          )
+          // Sort by filename / timestamp
+          .sort((a, b) =>
+            a.name.localeCompare(
+              b.name,
+              undefined,
+              { numeric: true }
+            )
+          );
+
+        if (images.length === 0) {
+          readerStatus.textContent =
+            "No chapter images were found in the folder.";
+
+          return;
+        }
+
+        // Create vertical reader pages
+        images.forEach((file, index) => {
+
+          const page = document.createElement("div");
+          page.className = "reader-page";
+
+          const image = document.createElement("img");
+
+          image.src = file.download_url;
+          image.alt = `Na Kang Lim Chapter 1 - Page ${index + 1}`;
+          image.loading = index < 2 ? "eager" : "lazy";
+          image.decoding = "async";
+
+          const pageNumber = document.createElement("span");
+          pageNumber.className = "page-number";
+          pageNumber.textContent = `PAGE ${index + 1}`;
+
+          page.appendChild(image);
+          page.appendChild(pageNumber);
+
+          chapterPages.appendChild(page);
+
+        });
+
+        readerStatus.textContent =
+          `${images.length} pages loaded · Chapter 1`;
+
+        chapterLoaded = true;
+
+      } catch (error) {
+
+        console.error("Chapter loading error:", error);
+
+        readerStatus.textContent =
+          "Unable to load Chapter 1. Please check your internet connection, repository visibility, and GitHub folder.";
+
+        chapterPages.innerHTML = `
+          <div class="reader-error">
+            <h3>Chapter unavailable</h3>
+            <p>
+              Arena couldn't retrieve the chapter images.
+              Check that your GitHub repository is public
+              and that the chapter-1 folder exists.
+            </p>
+            <button class="secondary-button"
+              onclick="retryChapter()">
+              Try again
+            </button>
+          </div>
+        `;
+
+      }
+    }
+
+    // RETRY LOADING
+    function retryChapter() {
+      chapterLoaded = false;
+      loadChapter();
+    }
+
+  </script>
+
 </body>
 </html>
