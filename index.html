@@ -3,238 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arena</title>
+  <title>Arena | Read Your Next Adventure</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <header class="header">
-    <a href="#" class="logo">ARENA</a>
+<body>
+  <header class="navbar">
+    <a class="logo" href="index.html">ARENA<span>.</span></a>
 
     <nav>
-      <a href="#home">Home</a>
-      <a href="#library">Library</a>
+      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="chapters.html">Library</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="home">
+    <section class="hero">
       <div class="hero-content">
-        <p class="eyebrow">YOUR MANHWA LIBRARY</p>
-        <h1>Enter the world of stories.</h1>
-        <p>Discover and read your favorite manhwa on Arena.</p>
-        <a href="#library" class="hero-button">Explore Library</a>
+        <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
+
+        <h1>Enter the world<br>of <span>manhwa.</span></h1>
+
+        <p class="hero-description">
+          Discover stories, meet unforgettable characters, and find your next
+          favorite read.
+        </p>
+
+        <a class="primary-button" href="chapters.html">
+          Explore the library <span aria-hidden="true">→</span>
+        </a>
       </div>
-    </section>
 
-    <section class="library-section" id="library">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">YOUR NEXT READ</p>
-          <h2>Manhwa Library</h2>
-        </div>
-
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="Search manhwa..."
-          aria-label="Search manhwa"
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="art-label">YOUR NEXT READ</div>
+        <img
+          src="public/images/covers/1795839638952.jpg"
+          alt=""
+          class="hero-cover"
         >
       </div>
-
-      <div id="library" class="library-grid"></div>
     </section>
 
-    <section id="reader" class="reader" hidden>
-      <div class="reader-header">
-        <button id="exitReader" type="button">← Back to Library</button>
-        <h2 id="readerTitle">Reading</h2>
+    <section class="featured-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PICK UP WHERE THE STORY BEGINS</p>
+          <h2>Featured <span>manhwa</span></h2>
+        </div>
+        <span class="section-count">01 TITLE</span>
       </div>
 
-      <div id="readerPages" class="reader-pages"></div>
+      <a class="manhwa-card" href="chapters.html">
+        <div class="card-cover-wrap">
+          <img
+            src="public/images/covers/1795839638952.jpg"
+            alt="Featured manhwa cover"
+            class="card-cover"
+          >
+          <span class="card-badge">FEATURED</span>
+        </div>
+
+        <div class="card-info">
+          <p class="card-category">MANHWA · ROMANCE</p>
+          <h3>Na Kang Lim</h3>
+          <p class="card-description">
+            Start reading and follow the story one chapter at a time.
+          </p>
+          <span class="read-link">Read Chapter 1 <span aria-hidden="true">↗</span></span>
+        </div>
+
+        <span class="card-arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <section class="bottom-banner">
+      <div>
+        <p class="eyebrow">READY TO READ?</p>
+        <h2>Your next chapter is waiting.</h2>
+      </div>
+      <a class="secondary-button" href="chapters.html">Open library <span aria-hidden="true">→</span></a>
     </section>
   </main>
 
-  <footer>
-    <p>ARENA · Read your next story</p>
+  <footer class="footer">
+    <a class="logo footer-logo" href="index.html">ARENA<span>.</span></a>
+    <p>A place for your next adventure.</p>
   </footer>
-
-  <script>
-    const comics = [
-      {
-        id: 1,
-        title: "Character Na Kang Lim",
-        genre: "Fantasy",
-        cover: "public/images/covers/1795839638952.jpg",
-        chapter: "Chapter 1",
-        pages: [
-          "Screenshot_2026-11-28-09-59-32-986_app.mihon.jpg",
-          "Screenshot_2026-11-28-09-59-41-994_app.mihon.jpg",
-          "Screenshot_2026-11-28-09-59-48-698_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-01-730_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-05-721_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-12-437_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-16-631_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-23-102_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-32-197_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-42-103_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-50-237_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-00-55-858_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-11-630_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-18-304_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-23-496_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-30-442_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-33-929_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-47-021_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-54-657_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-01-58-167_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-07-004_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-09-669_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-13-438_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-22-328_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-29-442_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-33-865_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-36-802_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-40-160_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-44-606_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-47-810_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-52-924_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-02-57-201_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-02-963_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-09-424_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-18-947_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-23-586_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-30-661_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-33-868_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-37-887_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-41-903_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-45-705_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-50-780_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-54-270_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-03-57-833_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-00-858_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-04-306_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-07-956_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-12-754_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-22-968_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-26-657_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-29-464_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-33-337_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-37-412_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-40-806_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-44-518_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-48-651_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-54-032_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-04-57-579_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-02-387_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-04-564_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-15-483_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-18-804_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-21-777_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-25-639_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-28-523_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-32-354_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-34-982_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-37-787_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-40-965_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-44-038_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-46-828_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-51-396_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-05-57-581_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-07-476_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-10-514_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-13-338_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-17-287_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-21-018_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-31-876_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-34-745_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-37-259_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-39-698_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-41-819_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-44-473_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-47-930_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-52-758_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-56-340_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-06-59-746_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-06-446_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-14-058_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-17-058_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-21-465_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-25-787_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-28-482_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-32-259_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-35-633_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-40-105_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-43-955_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-47-554_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-50-905_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-55-001_app.mihon.jpg",
-          "Screenshot_2026-11-28-10-07-58-687_app.mihon.jpg"
-        ].map(file => "image/chapter-1/" + file)
-      }
-    ];
-
-    const library = document.getElementById("library");
-    const reader = document.getElementById("reader");
-    const readerTitle = document.getElementById("readerTitle");
-    const readerPages = document.getElementById("readerPages");
-    const searchInput = document.getElementById("searchInput");
-
-    function renderLibrary() {
-      const search = searchInput.value.toLowerCase();
-
-      const filtered = comics.filter(comic =>
-        comic.title.toLowerCase().includes(search) ||
-        comic.genre.toLowerCase().includes(search)
-      );
-
-      library.innerHTML = filtered.map(comic => `
-        <article class="comic-card">
-          <button class="comic-cover" type="button" data-id="${comic.id}">
-            <img src="${comic.cover}" alt="${comic.title} cover">
-            <span class="cover-overlay">Read Now</span>
-          </button>
-          <div class="comic-info">
-            <h3>${comic.title}</h3>
-            <p>${comic.genre} · ${comic.chapter}</p>
-          </div>
-        </article>
-      `).join("");
-
-      library.querySelectorAll("[data-id]").forEach(button => {
-        button.addEventListener("click", () => openComic(Number(button.dataset.id)));
-      });
-    }
-
-    function openComic(id) {
-      const comic = comics.find(item => item.id === id);
-      if (!comic) return;
-
-      readerTitle.textContent = comic.title + " — " + comic.chapter;
-      readerPages.innerHTML = comic.pages.map((page, index) => `
-        <img
-          src="${page}"
-          alt="${comic.title}, page ${index + 1}"
-          loading="${index < 2 ? "eager" : "lazy"}"
-        >
-      `).join("");
-
-      reader.hidden = false;
-      document.getElementById("home").hidden = true;
-      document.querySelector(".library-section").hidden = true;
-      window.scrollTo(0, 0);
-    }
-
-    document.getElementById("exitReader").addEventListener("click", () => {
-      reader.hidden = true;
-      document.getElementById("home").hidden = false;
-      document.querySelector(".library-section").hidden = false;
-      window.scrollTo(0, 0);
-    });
-
-    searchInput.addEventListener("input", renderLibrary);
-
-    renderLibrary();
-  </script>
 </body>
 </html>
